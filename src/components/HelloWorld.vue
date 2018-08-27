@@ -1,9 +1,6 @@
 <template>
   <div class="hello">
-    <router-link to="/snow">snow</router-link>
-    <router-link to="/banjo">banjo</router-link>
-    <router-link to="/ch">ch</router-link>
-    <router-link to="/lauren">lauren</router-link>
+    <h1>home</h1>
   </div>
 </template>
 
