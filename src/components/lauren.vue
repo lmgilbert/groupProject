@@ -1,7 +1,8 @@
 
 <template>
-
+    
     <div class="body">
+        <canvas id="canvas"></canvas>
         <h1>
             This is lauren's component 
             
@@ -9,21 +10,24 @@
         </h1>
         <!--<p>{{ name }}</p>-->
         <div>
-            <h2 v-for="fact in info" :key="fact">{{ fact.name }}</h2>
+            <!--<h2 v-for="fact in info" :key="fact">{{ fact.name }}</h2>
             <span>Height: </span><span v-for="fact in info" :key="fact">{{ fact.height }}</span><br>
             <span>Hair Colour: </span><span v-for="fact in info" :key="fact">{{ fact.hair_color}}</span><br>
             <span>Skin Colour: </span><span v-for="fact in info" :key="fact">{{ fact.skin_color }}</span><br>
             <span>Eye Colour: </span><span v-for="fact in info" :key="fact">{{ fact.eye_color }}</span><br>
             <span>Birth Year: </span><span v-for="fact in info" :key="fact">{{ fact.birth_year }}</span><br>
-            <span>Gender: </span><span v-for="fact in info" :key="fact">{{ fact.gender }}</span><br>
+            <span>Gender: </span><span v-for="fact in info" :key="fact">{{ fact.gender }}</span><br>-->
             
-            
-            <!--<p>{{ fact.height }}</p>
-            <p> {{ fact.hair_color }}</p>
-            <p>{{ fact.skin_color }}</p>
-            <p>{{ fact.eye_color }}</p>
-            <p>{{ fact.birth_year }}</p>
-            <p>{{ fact.gender }}</p>-->
+            <div v-for="fact in info" :key="fact">
+                <h2>{{ fact.name }}</h2>
+                <p>{{ fact.height }}</p>
+                <p> {{ fact.hair_color }}</p>
+                <p>{{ fact.skin_color }}</p>
+                <p>{{ fact.eye_color }}</p>
+                <p>{{ fact.birth_year }}</p>
+                <p>{{ fact.gender }}</p>
+            </div>
+            <p>{{ searchTerm }}</P>
         </div>
     </div>
 </template>
@@ -36,7 +40,7 @@ export default {
     data () {
       return {
           info: [],
-          search: ''
+          searchTerm: []
           //searchTerm: info.name,
           
       }
@@ -50,8 +54,8 @@ export default {
         .get(apiURL)
         .then(response => (this.info = response))
     
-        this.search = this.info.name;
-        console.log(this.info)
+        this.searchTerm = this.info.name;
+
     },
     methods: {
         getGifs() {
@@ -90,6 +94,12 @@ li {
 }
 a {
   color: #42b983;
+
+
 }
+
+
+
+
 
 </style>
