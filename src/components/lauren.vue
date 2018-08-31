@@ -2,7 +2,6 @@
 <template>
     
     <div class="body">
-        <canvas id="canvas"></canvas>
         <div id="title-container">
             <img src="../assets/Star_Wars_logo-1.png" alt="Star Wars" height="auto" width="300"/>
             <h4 class="title-text">RANDOM CHARACTER GENERATOR</h4>
@@ -16,7 +15,7 @@
             <p>Eye Colour: {{ info.data.eye_color }}</p>
             <p>Birth Year: {{ info.data.birth_year }}</p>
             <p>Gender: {{ info.data.gender }}</p>
-
+            <a href="" id="button">Try Again</a>
 
         </div>
     </div>
@@ -64,8 +63,10 @@ export default {
         toUppercase: function(text) {
             return text.toUpperCase();
         }
+        
     }
-
+    
+    
     
 }
 
@@ -73,6 +74,11 @@ export default {
 
 
 <style>
+
+p {
+    color: white;
+    margin: 5px;
+}
 .title-text {
     margin: 2px;
     color: #fec532;
@@ -94,7 +100,8 @@ li {
 }
 a {
   /*color: #42b983;*/
-  color: #fec532;
+  color: white;
+  
 
 
 
@@ -115,6 +122,18 @@ canvas {
     width: 100%;
     height: 100%;
 }
+body {
+    background: url('../assets/146610-large-star-wars-star-background-1920x1080.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
+h2{
+    font-weight: 700;
+    color: #fec532;
+    margin-bottom: 10px;
+}
 
 </style>
