@@ -9,12 +9,16 @@
 
         <div>
             <h2>{{ info.data.name }}</h2>
+            
             <p>Height: {{ info.data.height }}</p>
             <p>Hair Color: {{ info.data.hair_color }}</p>
             <p>Skin Color: {{ info.data.skin_color }}</p>
             <p>Eye Colour: {{ info.data.eye_color }}</p>
             <p>Birth Year: {{ info.data.birth_year }}</p>
             <p>Gender: {{ info.data.gender }}</p>
+             <img :src="photo" alt="image"/>
+            
+
             <a href="" id="button">Try Again</a>
 
         </div>
@@ -29,27 +33,44 @@ export default {
     data () {
       return {
           info: [],
-          giph: []
-          //search: []
-          //searchTerm: info.name,
+          giph: [],
+          photo: []
+          
           
       }
     },
     //https://api.giphy.com/v1/gifs/search?api_key=j5A12BRdSwlPVq8sS3qXGmuoawOgeed6&q=&limit=25&offset=0&rating=G&lang=en
     mounted () {
         let randomNumber = Math.floor((Math.random() * 88) + 1);
-        let apiURL = 'https://swapi.co/api/people/' + randomNumber
+        let apiURL = 'https://swapi.co/api/people/' + randomNumber;
     
-        axios
+        /*axios
         .get(apiURL)
         .then(response => (this.info = response))
     
         let searchTerm = this.info.data.name;
         
         axios
-        .get('https://api.giphy.com/v1/gifs/search?api_key=j5A12BRdSwlPVq8sS3qXGmuoawOgeed6&q=&limit=25&offset=0&rating=G&lang=en')
-        .then(response => (this.giph = response))
-        conole.log(giph)
+        .get('https://api.giphy.com/v1/gifs/search?api_key=j5A12BRdSwlPVq8sS3qXGmuoawOgeed6&q=' + searchTerm + '&limit=25&offset=0&rating=G&lang=en')
+        .then(response => (this.giph = response))*/
+        axios
+        .get(apiURL)
+        .then(response => {
+
+            this.info = response
+            let searchTerm = this.info.data.name;
+            axios
+            .get('https://api.giphy.com/v1/gifs/search?api_key=j5A12BRdSwlPVq8sS3qXGmuoawOgeed6&q=' + searchTerm + '&limit=25&offset=0&rating=G&lang=en')
+            .then(response2 => 
+            {
+                this.giph = response2;
+                this.photo =response2.data.url;
+
+            })
+
+
+
+        })
 
 
 
@@ -112,10 +133,7 @@ a {
 
 
 
-body {
-    padding: 0;
-    margin: 0;
-}
+
 
 canvas {
     position: absolute;
