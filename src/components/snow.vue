@@ -1,6 +1,8 @@
 <template>
     <div>
       <div id="app">
+        <button class="button gender" data-gps-track="site_switcher.show" @click="showFemales()">Female</button>
+        <button class="button gender" @click="showMales()">Male</button>
         <div id="myComponent">
           <h1 id="name">
               {{ firstName }}  {{ lastName }}
@@ -11,9 +13,9 @@
           <p> Phone : {{ phone }}</p>
           <p> Email : {{ email }}</p>
           <p> Location : {{ city }} </p>
-          <button id="contact"> Contact Now </button>
-          <button id="next" @click="nextButton" > Next </button>
         </div>
+        <button class="button option" > Contact Now </button>
+          <button @click="loadRandomUser()" class="button option"> Next </button>
         <footer> COPYRIGHT @ SNOW </footer>
       </div>
     </div>
@@ -21,6 +23,7 @@
 
 <script>
 import axios from "axios";
+import $ from "jquery";
 import Vue from "vue";
 window.Vue = Vue;
 
@@ -28,6 +31,7 @@ export default {
   name: "snow",
   data() {
     return {
+      selectGender: "",
       gender: null,
       image: null,
       firstName: null,
@@ -40,8 +44,20 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get("https://randomuser.me/api/?nat=nz")
+    this.loadRandomUser();
+},
+    
+  
+  methods: {
+    showMales: function(){
+      this.selectGender= "male"
+    },
+    showFemales: function(){
+      this.selectGender= "female"
+    },
+    loadRandomUser: function() {
+      axios
+      .get("https://randomuser.me/api/?nat=nz&gender="+ this.selectGender)
       .then(response => {
         this.image = response.data.results[0].picture.large;
         this.firstName = response.data.results[0].name.first;
@@ -52,14 +68,11 @@ export default {
         this.city = response.data.results[0].location.city;
         this.state = response.data.results[0].location.state;
         this.age = response.data.results[0].dob.age;
-        console.log(response);
+        // console.log(response);
       })
       .catch(error => console.log(error));
-  },
-  methods: {
-    nextButton: function(event) {
-      location.reload();
     }
+    
   }
 };
 </script>
@@ -78,6 +91,7 @@ body {
   overflow: hidden;
   text-align: center;
   z-index: 5;
+
 }
 #myComponent::after {
   content: "";
@@ -85,10 +99,11 @@ body {
   position: absolute;
   margin-left: 20%;
   padding-right: 60%;
+  
   height: 190px;
   top: 0;
   background: antiquewhite;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.15); */
   z-index: -1;
 }
 #image {
@@ -111,7 +126,7 @@ footer {
   display: block;
   width: 100%;
 }
-#next {
+.button {
   border: none;
   color: white;
   padding: 10px 26px;
@@ -119,7 +134,6 @@ footer {
   text-decoration: none;
   display: inline-block;
   font-size: 13px;
-  margin: 100px 2px;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -128,9 +142,15 @@ footer {
   border: 2px solid antiquewhite;
 }
 
-#next:hover {
+.button:hover {
   background-color: antiquewhite;
   color: black;
+}
+.gender:active{
+    background:antiquewhite;
+}
+.gender:focus{
+    background:antiquewhite;
 }
 
 #contact {
@@ -153,5 +173,13 @@ footer {
   border: 2px solid antiquewhite;
   background-color: white;
   color: black;
+}
+.gender{
+  padding: 8px 24px;
+  margin-bottom: 30px;
+  font-size: 10px;
+}
+.option{
+  margin-top: 90px;
 }
 </style>
