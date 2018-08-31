@@ -3,31 +3,21 @@
     
     <div class="body">
         <canvas id="canvas"></canvas>
-        <h1>
-            This is lauren's component 
-            
-            
-        </h1>
-        <!--<p>{{ name }}</p>-->
+        <div id="title-container">
+            <img src="../assets/Star_Wars_logo-1.png" alt="Star Wars" height="auto" width="300"/>
+            <h4 class="title-text">RANDOM CHARACTER GENERATOR</h4>
+        </div>
+
         <div>
-            <!--<h2 v-for="fact in info" :key="fact">{{ fact.name }}</h2>
-            <span>Height: </span><span v-for="fact in info" :key="fact">{{ fact.height }}</span><br>
-            <span>Hair Colour: </span><span v-for="fact in info" :key="fact">{{ fact.hair_color}}</span><br>
-            <span>Skin Colour: </span><span v-for="fact in info" :key="fact">{{ fact.skin_color }}</span><br>
-            <span>Eye Colour: </span><span v-for="fact in info" :key="fact">{{ fact.eye_color }}</span><br>
-            <span>Birth Year: </span><span v-for="fact in info" :key="fact">{{ fact.birth_year }}</span><br>
-            <span>Gender: </span><span v-for="fact in info" :key="fact">{{ fact.gender }}</span><br>-->
-            
-            <div v-for="fact in info" :key="fact">
-                <h2>{{ fact.name }}</h2>
-                <p>{{ fact.height }}</p>
-                <p> {{ fact.hair_color }}</p>
-                <p>{{ fact.skin_color }}</p>
-                <p>{{ fact.eye_color }}</p>
-                <p>{{ fact.birth_year }}</p>
-                <p>{{ fact.gender }}</p>
-            </div>
-            <p>{{ searchTerm }}</P>
+            <h2>{{ info.data.name }}</h2>
+            <p>Height: {{ info.data.height }}</p>
+            <p>Hair Color: {{ info.data.hair_color }}</p>
+            <p>Skin Color: {{ info.data.skin_color }}</p>
+            <p>Eye Colour: {{ info.data.eye_color }}</p>
+            <p>Birth Year: {{ info.data.birth_year }}</p>
+            <p>Gender: {{ info.data.gender }}</p>
+
+
         </div>
     </div>
 </template>
@@ -40,7 +30,8 @@ export default {
     data () {
       return {
           info: [],
-          searchTerm: []
+          giph: []
+          //search: []
           //searchTerm: info.name,
           
       }
@@ -54,13 +45,18 @@ export default {
         .get(apiURL)
         .then(response => (this.info = response))
     
-        this.searchTerm = this.info.name;
+        let searchTerm = this.info.data.name;
+        
+        axios
+        .get('https://api.giphy.com/v1/gifs/search?api_key=j5A12BRdSwlPVq8sS3qXGmuoawOgeed6&q=&limit=25&offset=0&rating=G&lang=en')
+        .then(response => (this.giph = response))
+        conole.log(giph)
+
+
 
     },
     methods: {
-        getGifs() {
-            console.log(this.info);
-        },
+        
 
     },
 
@@ -77,6 +73,10 @@ export default {
 
 
 <style>
+.title-text {
+    margin: 2px;
+    color: #fec532;
+}
 .inline {
     display: inline;
 }
@@ -93,13 +93,28 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  /*color: #42b983;*/
+  color: #fec532;
 
 
+
+}
+#title-container {
+    margin-top: 30px;
 }
 
 
 
+body {
+    padding: 0;
+    margin: 0;
+}
+
+canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 
 
 </style>
