@@ -26,6 +26,8 @@
 import axios from 'axios'
 export default {
     name: "lauren",
+
+    
     data () {
       return {
           info: [],
@@ -34,9 +36,17 @@ export default {
           isLoading: true
       }
     },
+
+    beforeCreate: function() {
+        document.body.className = 'home';        
+    },
+    
+    beforeDestroy: function() {
+        document.body.className = '';        
+    },
    
     mounted () {//88 originally in the math.random
-       this.loadfromAPI();
+        this.loadfromAPI();
     },
     methods: {
         loadfromAPI: function(){
@@ -124,14 +134,6 @@ canvas {
     height: 100%;
 }
 
-body {
-    background: url('../assets/146610-large-star-wars-star-background-1920x1080.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
 h2{
     font-weight: 700;
     color: #fec532;
@@ -153,5 +155,13 @@ h2{
 
 .button:hover{
     background: #ffd875;
+}
+
+.home {
+    background: url('../assets/146610-large-star-wars-star-background-1920x1080.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 </style>
