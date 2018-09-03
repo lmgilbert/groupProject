@@ -15,7 +15,7 @@
             <p>Eye Colour: {{ info.data.eye_color }}</p>
             <p>Birth Year: {{ info.data.birth_year }}</p>
         </div>
-        <a href="lauren" class="button">TRY AGAIN</a>
+        <a href="" class="button">TRY AGAIN</a>
     </div>
 </template>
 
@@ -61,6 +61,9 @@ export default {
 
 </script>
 <style>
+#text {
+    margin-bottom: 15px;
+}
 p {
     color: white;
     margin: 5px;
