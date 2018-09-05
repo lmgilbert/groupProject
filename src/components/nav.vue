@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <router-link to="/snow">snow</router-link>
+        <router-link to="/snow">Snow</router-link>
         <router-link to="/banjo">banjo</router-link>
         <router-link to="/ch">ch</router-link>
         <router-link to="/lauren">lauren</router-link>
