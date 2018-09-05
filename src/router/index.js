@@ -5,6 +5,7 @@ import snow from '@/components/snow'
 import banjo from '@/components/banjo'
 import ch from '@/components/ch'
 import lauren from '@/components/lauren'
+import ggg from '@/components/ggg'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/lauren',
       name: 'lauren',
       component: lauren
+    },
+    {
+      path: '/ggg',
+      name: 'ggg',
+      component: ggg
     },
   ]
 })
